@@ -69,3 +69,18 @@ class Connector:
         elif column == "" and value != "":
             return "Error, column missing"
         return self.execution(Q1)
+    
+    def sort_data(self, table : str, bycolumn : int, column="", values="") -> list:
+        """
+        This function accepts 2 parameters, 2 optional parameters 
+        sorts the data and ranks them
+        returns a list 
+        """
+        data_list = self.get_data(table, column=column, values=values)
+        data_list.sort(key = lambda a: a[bycolumn])
+        try:
+            for i in range(len(data_list)):
+                self.execution(f"UPDATE {table} SET rank = {i+1} WHERE Id = {data_list[i][0]}")
+        except:
+            pass
+        return data_list
