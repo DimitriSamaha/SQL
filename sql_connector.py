@@ -4,17 +4,16 @@ import mysql.connector
 class Connector:
     def __init__(self, database : str) -> None:
         """
-        This function accepts one parameter, database :str
-        Initiates self.db and self.mycursor
-        return None
+        This function accepts one parameter, database :str \n
+        Initiates self.db and self. 
         """
         self.db = mysql.connector.connect(host="localhost", user="root", passwd="root", database=database)
         self.mycursor = self.db.cursor()
 
     def execution(self, query : str):
         """
-        This function accepts one parameter, query :str.
-        Uses mycursor.execute and db.commit if necessary
+        This function accepts one parameter, query :str \n
+        Uses mycursor.execute and db.commit if necessary \n
         return self.mycursor 
         """
         self.mycursor.execute(query)
@@ -26,8 +25,8 @@ class Connector:
 
     def get_data(self, table : str, columns="*", column="", values="") -> list:
         """
-        This function accepts one parameter, table :str.
-        Uses sql query SELECT and get the desiered data from the columns, columns in values
+        This function accepts one parameter, table :strs\n
+        Uses sql query SELECT and get the desiered data from the columns, columns in values\n
         return a list of the selected data
         """
         acc_list = []
@@ -41,8 +40,8 @@ class Connector:
 
     def add_data(self, table : str, columns : list, values : list) -> None:
         """
-        This function accepts 3 parameter, table :str - columns  :list - values :list.
-        Uses sql query INSERT and adds each values in the right columns of the table
+        This function accepts 3 parameter, table :str - columns  :list - values :list. \n
+        Uses sql query INSERT and adds each values in the right columns of the table \n
         return None since sql query INSERT returns None
         """
         str_columns = ""
@@ -58,9 +57,9 @@ class Connector:
     
     def delete_data(self, table:str, column="", value=""):
         """
-        This function accepts 1 parameter, table :str and 2 optional parameters, column :str - value :str.
-        Uses sql query DELETE FROM 
-        return str error if parameters not respected, None if successful
+        This function accepts 1 parameter, table :str and 2 optional parameters, column :str - value :str. \n
+        Uses sql query DELETE FROM \n
+        return str error if parameters not respected, None if successful 
         """
         Q1 = f"DELETE FROM {table}"
         if column != "" and value != "":
